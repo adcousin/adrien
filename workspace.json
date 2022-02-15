@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "projects": {
+    "bataille": "apps/bataille",
+    "bataille-e2e": "apps/bataille-e2e"
+  }
+}
