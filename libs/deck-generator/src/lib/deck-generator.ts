@@ -22,7 +22,7 @@ export function getDeck(): Deck {
   // Get max value of the cards in deck (52-cards or 32-cards deck)
   const values = (CARDS_IN_DECK / 4);
   // Create an empty deck
-  let deck = [];
+  const deck = [];
   // For color in colors
   for (const color in Color) {
     // For value in values
