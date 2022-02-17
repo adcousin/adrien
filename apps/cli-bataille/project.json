@@ -1,0 +1,52 @@
+{
+  "root": "apps/cli-bataille",
+  "sourceRoot": "apps/cli-bataille/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/node:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/cli-bataille",
+        "main": "apps/cli-bataille/src/main.ts",
+        "tsConfig": "apps/cli-bataille/tsconfig.app.json",
+        "assets": ["apps/cli-bataille/src/assets"]
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/cli-bataille/src/environments/environment.ts",
+              "with": "apps/cli-bataille/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/node:execute",
+      "options": {
+        "buildTarget": "cli-bataille:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/cli-bataille/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/cli-bataille"],
+      "options": {
+        "jestConfig": "apps/cli-bataille/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

@@ -2,6 +2,8 @@
   "version": 2,
   "projects": {
     "bataille": "apps/bataille",
-    "bataille-e2e": "apps/bataille-e2e"
+    "bataille-e2e": "apps/bataille-e2e",
+    "cli-bataille": "apps/cli-bataille",
+    "deck-generator": "libs/deck-generator"
   }
 }
