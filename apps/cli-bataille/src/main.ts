@@ -1,4 +1,4 @@
-import {deckGenerator} from '@adrien/deck-generator'
+import {deckGenerator, CARDS_IN_DECK, getDeck} from '@adrien/deck-generator'
 console.log('Hello World!');
-console.log('Hello Adrien');
 console.log(deckGenerator());
+console.log(getDeck());
