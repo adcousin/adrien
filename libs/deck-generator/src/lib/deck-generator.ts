@@ -27,20 +27,25 @@ export function getDeck(): Deck {
   for (const color in Color) {
     // For value in values
       for (const value of [...Array(values).keys()]) {
-      // Get the color from Color object and assign to card_color
+      //[DEPRECATED] Get the color from Color object and assign to card_color
+      /*
       let card_color: Color;
-      switch (color) {
+       switch (color) {
         case 'SPADES': card_color = Color.SPADES;break;
         case 'DIAMONDS': card_color = Color.DIAMONDS;break; 
         case 'CLUBS': card_color = Color.CLUBS;break; 
         case 'HEARTS': card_color = Color.HEARTS;break; 
-      }
+      } 
+      */
       // Create the Card
-      const card:Card = {value: value, color: card_color};
+      const card:Card = {value: value, color: Color[color]};
       // Append the Deck
       deck.push(card);
     };
   };
   return deck;
+  // Sort by value
   //return deck.sort(function(a,b) {return a.value - b.value;});
+  // Sort by color
+  //To do 
 }

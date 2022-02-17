@@ -1,4 +1,4 @@
-import { deckGenerator, getDeck } from './deck-generator';
+import { getDeck } from './deck-generator';
 
 describe('getDeck', () => {
   it('should work', () => {
