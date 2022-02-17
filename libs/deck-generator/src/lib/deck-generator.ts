@@ -10,9 +10,9 @@ export interface Card {
 }
 
 enum Color {
-  CLUBS = 'CLUBS',
   DIAMONDS = 'DIAMONDS',
   HEARTS = 'HEARTS',
+  CLUBS = 'CLUBS',
   SPADES = 'SPADES'
 }
 
@@ -22,7 +22,7 @@ export function getDeck(): Deck {
   // Get max value of the cards in deck (52-cards or 32-cards deck)
   const values = (CARDS_IN_DECK / 4);
   // Create an empty deck
-  const deck = [];
+  let deck = [];
   // For color in colors
   for (const color in Color) {
     // For value in values
@@ -43,9 +43,19 @@ export function getDeck(): Deck {
       deck.push(card);
     };
   };
-  return deck;
   // Sort by value
-  //return deck.sort(function(a,b) {return a.value - b.value;});
-  // Sort by color
-  //To do 
+  deck.sort(function(a,b) {return a.value - b.value;});
+  // Sort by color 
+  deck.sort(function(a, b) {
+    const nameA = a.color.toUpperCase();
+    const nameB = b.color.toUpperCase();
+    if (nameA < nameB) {
+      return -1;
+    }
+    if (nameA > nameB) {
+      return 1;
+    }
+    return 0;
+  });
+  return deck
 }
