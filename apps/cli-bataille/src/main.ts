@@ -1,4 +1,10 @@
-import {deckGenerator, getDeck} from '@adrien/deck-generator'
-console.log('Hello World!');
+import {deckGenerator, getDeck, shuffleDeck, dealDeck} from '@adrien/deck-generator'
+import {CARDS_IN_DEAL} from '@adrien/deck-generator'
+
 console.log(deckGenerator());
-console.log(getDeck());
+const deck = getDeck();
+const shuffledDeck = shuffleDeck(deck)
+const dealtDeck = dealDeck(shuffledDeck, CARDS_IN_DEAL);
+// console.log("Deck from getDeck()\n",deck);
+// console.log("Deck from shuffleDeck()\n",);
+console.log("Decks of each two players\n", dealtDeck);

@@ -1,4 +1,8 @@
-import { getDeck } from './deck-generator';
+import { getDeck, shuffleDeck, dealDeck } from './deck-generator';
+import { CARDS_IN_DECK, CARDS_IN_DEAL, NBR_OF_PLAYERS } from './deck-generator';
+import { sortDeckByValue, sortDeckByColor } from './deck-generator';
+
+
 
 describe('getDeck', () => {
   it('should work', () => {
@@ -56,6 +60,36 @@ describe('getDeck', () => {
       ,{value: 11, color: 'SPADES'}
       ,{value: 12, color: 'SPADES'}
     ]
+    // Checked on the standard deck
     expect(getDeck()).toEqual(expectedDeck);
   });
 });
+
+describe('shuffleDeck', () => {
+  it('should work', () => {
+    const deck = getDeck();
+    const shuffledDeck = shuffleDeck(deck);
+    const expectedLength = CARDS_IN_DECK;
+    const shuffledDeckWithoutDuplicates = [...new Set(shuffledDeck)];
+    // Length is deck length (32, 52...)
+    expect(shuffledDeck.length).toEqual(expectedLength);
+    // shuffledDeck == deck once sorted
+    expect(sortDeckByColor(sortDeckByValue(shuffledDeck))).toEqual(deck);
+    // No duplicates in shuffledDeck
+    expect(shuffledDeck.length).toEqual(shuffledDeckWithoutDuplicates.length);
+  })
+})
+
+describe('dealCards', () => {
+  it('should work', () => {
+    const deck = getDeck();
+    const shuffledDeck = shuffleDeck(deck);
+    const dealtDeck = dealDeck(shuffledDeck, CARDS_IN_DEAL);
+    // dealtDeack is an Array with the size of the nbr of players
+    expect(dealtDeck.length).toEqual(NBR_OF_PLAYERS);
+    for (const playerDeck of dealtDeck) {
+      // Each player deck to have the proper number of elements
+      expect(playerDeck.length).toEqual(CARDS_IN_DECK / NBR_OF_PLAYERS);
+    }
+  })
+})
